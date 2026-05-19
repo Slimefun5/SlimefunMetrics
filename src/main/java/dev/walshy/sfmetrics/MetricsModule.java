@@ -30,10 +30,11 @@ import dev.walshy.sfmetrics.charts.TickRateChart;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
+import org.bukkit.plugin.java.JavaPlugin;
+
 public class MetricsModule {
 
     public static final String VERSION = MetricsModule.class.getPackage().getImplementationVersion();
-    public static final int PLUGIN_ID = 4574;
 
     private static boolean metricsAutoUpdates;
     private static SlimefunBranch branch = SlimefunBranch.UNKNOWN;
@@ -45,7 +46,12 @@ public class MetricsModule {
     private MetricsModule() {}
 
     public static void start() {
-        Metrics metrics = new Metrics(Slimefun.instance(), PLUGIN_ID);
+        // Fallback for Slimefun5 core dynamically loading this
+        setup(Slimefun.instance(), 31272);
+    }
+
+    public static void setup(JavaPlugin plugin, int pluginId) {
+        Metrics metrics = new Metrics(plugin, pluginId);
         branch = Slimefun.getUpdater().getBranch();
         slimefunVersion = Slimefun.getUpdater().getBuildNumber();
         metricsAutoUpdates = Slimefun.getMetricsService().hasAutoUpdates();

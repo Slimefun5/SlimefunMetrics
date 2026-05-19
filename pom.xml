@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev.walshy</groupId>
-    <artifactId>MetricsModule</artifactId>
+    <artifactId>SlimefunMetrics</artifactId>
     <version>UNOFFICIAL</version>
 
     <repositories>
