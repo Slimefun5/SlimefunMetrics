@@ -86,6 +86,13 @@
                             <pattern>org.bstats</pattern>
                             <shadedPattern>dev.walshy.sfmetrics.bstats</shadedPattern>
                         </relocation>
+                        <!-- This module compiles against upstream Slimefun4 (provided) for the API, but the
+                             fork relocated the plugin to the slimefun5 package. Rewrite our own bytecode's
+                             references so the built module targets slimefun5 - no downstream byte-swap needed. -->
+                        <relocation>
+                            <pattern>io.github.thebusybiscuit.slimefun4</pattern>
+                            <shadedPattern>io.github.thebusybiscuit.slimefun5</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
 
