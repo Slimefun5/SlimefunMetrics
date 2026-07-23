@@ -86,6 +86,13 @@
                             <pattern>org.bstats</pattern>
                             <shadedPattern>dev.walshy.sfmetrics.bstats</shadedPattern>
                         </relocation>
+                        <!-- The source compiles against upstream Slimefun's slimefun4.* package, but this fork
+                             relocated its API to slimefun5.*. Rewrite the module's references so the built jar
+                             links against the fork (otherwise it NoClassDefFounds on load). -->
+                        <relocation>
+                            <pattern>io.github.thebusybiscuit.slimefun4</pattern>
+                            <shadedPattern>io.github.thebusybiscuit.slimefun5</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
 
