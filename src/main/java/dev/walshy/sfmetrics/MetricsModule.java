@@ -51,6 +51,17 @@ public class MetricsModule {
     }
 
     public static void setup(JavaPlugin plugin, int pluginId) {
+        // Consolidated metrics: a Slimefun addon (any plugin other than the core Slimefun instance) does not
+        // start its own separate bStats project when the core is configured to disable addon metrics. The
+        // core plugin's own "Addons" chart already reports which addons are installed, giving one clean data
+        // source instead of a scattered per-addon player count. Defaults to disabled (true) when the option
+        // is absent, e.g. on older core configs.
+        if (plugin != Slimefun.instance()
+                && (!Slimefun.getCfg().contains("metrics.disable-addon-metrics")
+                    || Slimefun.getCfg().getBoolean("metrics.disable-addon-metrics"))) {
+            return;
+        }
+
         Metrics metrics = new Metrics(plugin, pluginId);
         branch = Slimefun.getUpdater().getBranch();
         slimefunVersion = Slimefun.getUpdater().getBuildNumber();
