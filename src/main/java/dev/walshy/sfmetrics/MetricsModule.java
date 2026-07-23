@@ -123,3 +123,5 @@ public class MetricsModule {
         Slimefun.instance().getLogger().log(Level.WARNING, x, () -> "Failed to load bStats Chart \"" + chartName + "\" for Metrics #" + VERSION);
     }
 }
+
+// Consolidated addon metrics: see MetricsModule.setup gate (metrics.disable-addon-metrics).
